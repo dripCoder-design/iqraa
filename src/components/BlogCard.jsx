@@ -19,9 +19,9 @@ const BlogCard = ({blog}) => {
         __html: description.replace(/<[^>]*>/g, '').slice(0, 80) + '...' 
     }} 
 />
-    <div className="card-actions justify-end">
+    {/* <div className="card-actions justify-end">
       <button className="btn btn-primary">Buy Now</button>
-    </div>
+    </div> */}
   </div>
 </div>
   )

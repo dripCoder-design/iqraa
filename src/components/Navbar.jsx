@@ -1,9 +1,20 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useAppContext } from '../context/AppContext'
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const {navigate,token,logout} = useAppContext()
+     const handleAuthClick = () => {
+        if (token) {
+            // User is logged in - log them out
+            logout();
+        } else {
+            // User is not logged in - navigate to login page
+            navigate('/admin/');
+        }
+    };
+
   return (
     <div className="navbar  ">
   <div className="flex-none">
@@ -15,8 +26,8 @@ const Navbar = () => {
     <a className="btn btn-ghost text-xl text-primary">Iqra</a>
   </div>
   <div className="flex-none">
-    <button onClick={()=>navigate('/login')} className="btn btn-outline btn-primary rounded-full ">
-        login
+    <button   onClick={handleAuthClick} className="btn btn-outline btn-primary rounded-full ">
+      {token ? 'log out' : ' Login'}
         <span className='xs'><ArrowRight /> </span>
         </button>
   </div>
